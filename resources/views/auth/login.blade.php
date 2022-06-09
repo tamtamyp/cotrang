@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ setting('site_title', '') }}</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ setting('site_favicon', '') }}" />
 </head>
@@ -85,14 +85,14 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('adminTemplates/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('admin_templates/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('adminTemplates/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/misc.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/misc.js') }}"></script>
     <!-- endinject -->
 </body>
 

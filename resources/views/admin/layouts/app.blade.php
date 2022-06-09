@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ setting('site_title', '') }}</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_templates/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ setting('site_favicon', '') }}" />
 </head>
@@ -47,9 +47,9 @@
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo" href="index.html"><img
-                        src="{{ asset('adminTemplates/images/logo.svg') }}" alt="logo" /></a>
+                        src="{{ asset('admin_templates/images/logo.svg') }}" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                        src="{{ asset('adminTemplates/images/logo-mini.svg') }}" alt="logo" /></a>
+                        src="{{ asset('admin_templates/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -71,7 +71,7 @@
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <div class="nav-profile-img">
-                                <img src="{{ asset('adminTemplates/images/faces/face1.jpg') }}" alt="image">
+                                <img src="{{ asset('admin_templates/images/faces/face1.jpg') }}" alt="image">
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
@@ -103,7 +103,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('adminTemplates/images/faces/face4.jpg') }}" alt="image"
+                                    <img src="{{ asset('admin_templates/images/faces/face4.jpg') }}" alt="image"
                                         class="profile-pic">
                                 </div>
                                 <div
@@ -116,7 +116,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('adminTemplates/images/faces/face2.jpg') }}" alt="image"
+                                    <img src="{{ asset('admin_templates/images/faces/face2.jpg') }}" alt="image"
                                         class="profile-pic">
                                 </div>
                                 <div
@@ -129,7 +129,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('adminTemplates/images/faces/face3.jpg') }}" alt="image"
+                                    <img src="{{ asset('admin_templates/images/faces/face3.jpg') }}" alt="image"
                                         class="profile-pic">
                                 </div>
                                 <div
@@ -221,7 +221,7 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="{{ asset('adminTemplates/images/faces/face1.jpg') }}" alt="profile">
+                                <img src="{{ asset('admin_templates/images/faces/face1.jpg') }}" alt="profile">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
@@ -336,20 +336,20 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('adminTemplates/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('admin_templates/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="{{ asset('adminTemplates/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/jquery.cookie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin_templates/vendors/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/jquery.cookie.js') }}" type="text/javascript"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('adminTemplates/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/misc.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/misc.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('adminTemplates/js/dashboard.js') }}"></script>
-    <script src="{{ asset('adminTemplates/js/todolist.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin_templates/js/todolist.js') }}"></script>
     <!-- End custom js for this page -->
 </body>
 
