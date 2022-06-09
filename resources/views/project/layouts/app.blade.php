@@ -39,6 +39,7 @@
 	<script src="{{asset('project/js/jquery.countdown.min.js')}}"></script>
 	<script src="{{asset('project/js/jquery.sticky.js')}}"></script>
 	<script src="{{asset('project/js/functions.js')}}"></script>
+	@include('vendor.lara-izitoast.toast')
     @stack('js')
 </body>
 </html>

@@ -19,4 +19,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+
+    public function hasPermission($permission): bool{
+        return $this->role->permissions()->where('slug', $permission)->first() ? true : false;
+    }
+    public function isSystemAdmin(){
+        if($this->role_id == 1){
+            return true;
+        }
+        return false;
+    }
 }
