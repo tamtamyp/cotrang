@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ setting('site_title', '') }}</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminTemplates/assets/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminTemplates/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('adminTemplates/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminTemplates/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ setting('site_favicon', '') }}" />
 </head>
@@ -39,17 +39,21 @@
                             <form class="pt-3" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="username" name="username" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="username" name="username"
+                                        class="form-control form-control-lg @error('username') is-invalid @enderror"
+                                        id="exampleInputEmail1" placeholder="Username" required
+                                        onfocus=" let value = this.value; this.value = null; this.value=value"
+                                        autofocus>
+                                    <span class="focus-input100"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" name="password"
+                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                        id="exampleInputPassword1" placeholder="Password" required>
+                                    <span class="focus-input100"></span>
                                 </div>
                                 @error('username')
-                                    <div class="invalid-feedback mt-2" style="margin-top:10px" role="alert">
-                                        <strong class="" style="color:red">{{ $message }}</strong>
-                                    </div>
+                                    <h6 class="font-weight-light" style="color:red;margin-top:10px">{{ $message }}</h6>
                                 @enderror
                                 <div class="mt-3">
                                     <input id='btn_login' name='btn_login' type='submit'
@@ -81,14 +85,14 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('adminTemplates/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('adminTemplates/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="{{ asset('adminTemplates/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('adminTemplates/assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('adminTemplates/assets/js/misc.js') }}"></script>
+    <script src="{{ asset('adminTemplates/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('adminTemplates/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('adminTemplates/js/misc.js') }}"></script>
     <!-- endinject -->
 </body>
 
