@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin_templates/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ setting('site_favicon', '') }}" />
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -93,6 +94,8 @@
     <script src="{{ asset('admin_templates/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin_templates/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('admin_templates/js/misc.js') }}"></script>
+    <script src="{{ asset('js/iziToast.js') }}"></script>
+    @include('vendor.lara-izitoast.toast')
     <!-- endinject -->
 </body>
 
