@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -30,8 +31,9 @@ class LoginController extends Controller
         session(['link' => url()->previous()]);
         return view('auth.login');
     }
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request)
     {
+        $user = User::where('username',$request->username)->where('status','1')->first();
         if (!$user->status) {
             Auth::logout();
             notify()->error("Tài khoản $user->name không tồn tại!", 'Error');
