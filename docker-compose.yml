@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: cotrang_nginx
+    image: nginx:1.23.2-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - network
+
+  app:
+    container_name: cotrang_app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - network
+
+  database:
+    container_name: database
+    image: library/mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: cotrang
+    volumes:
+      - data:/var/lib/mysql
+      - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    networks:
+      - network
+
+  phpmyadmin:
+    container_name: cotrang_phpmyadmin
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - network
+
+volumes:
+  data:
+    driver: local
+
+networks:
+  network:
+    driver: bridge
