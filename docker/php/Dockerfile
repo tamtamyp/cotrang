@@ -1,3 +1,16 @@
+FROM composer:2 as composer_stage
+
+RUN rm -rf /var/www && mkdir -p /var/www/html
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+
+# This are production settings, I'm running with 'no-dev', adjust accordingly 
+# if you need it
+RUN composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
+
+RUN composer dump-autoload --optimize --apcu --no-dev
+
 FROM php:8.1-fpm-alpine
 
 RUN apk update \
@@ -15,7 +28,7 @@ RUN apk update \
         zlib \
         unzip \
         npm
-# Install PHP extensions
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath zip
 
 RUN deluser www-data &&\
@@ -24,9 +37,11 @@ RUN deluser www-data &&\
     adduser -u 1000 -G www-data www-data --disabled-password &&\
     install -d -m 0755 -o www-data -g www-data /home/www-data
 
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-RUN rm -rf composer-setup.php
+# RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+# RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+# RUN php composer-setup.php
+# RUN php -r "unlink('composer-setup.php');"
+# RUN mv composer.phar /usr/local/bin/composer
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app

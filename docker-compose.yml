@@ -29,11 +29,13 @@ services:
   database:
     container_name: database
     image: library/mysql:8.0
+    ports:
+      - 3309:3306
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_USER: root
+      MYSQL_USER: cotrang
       MYSQL_PASSWORD: 123456
       MYSQL_DATABASE: cotrang
     volumes:
@@ -55,6 +57,18 @@ services:
       MYSQL_ROOT_PASSWORD: 123456
     networks:
       - network
+
+  # composer_installation:
+  #   container_name: composer_installation
+  #   image: composer/composer
+  #   networks:
+  #     - network
+  #   ports:
+  #     - "9001:9000"
+  #   volumes:
+  #     - ./:/app
+  #   # working_dir: /composer
+  #   command: update
 
 volumes:
   data:
