@@ -13,6 +13,13 @@ RUN composer dump-autoload --optimize --apcu --no-dev
 
 FROM php:8.1-fpm-alpine
 
+ENV PHP_EXTENSIONS \
+    opcache \
+    zip \
+    bcmath \
+    pdo_mysql \
+    pdo_pgsql
+    
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache \

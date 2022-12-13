@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ setting('site_title', '') }} | Admin</title>
+    <title>@yield('title') | Admin | {{ setting('site_title', '') }}</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin_templates/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_templates/vendors/css/vendor.bundle.base.css') }}">
@@ -356,6 +356,7 @@
     <script src="{{ asset('admin_templates/js/todolist.js') }}"></script>
     <script src="{{ asset('js/iziToast.js') }}"></script>
     <!-- End custom js for this page -->
+    @stack('js')
     @include('vendor.lara-izitoast.toast')
 </body>
 
