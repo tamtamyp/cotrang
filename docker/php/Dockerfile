@@ -9,8 +9,6 @@ COPY composer.json composer.lock ./
 # if you need it
 RUN composer install --ignore-platform-reqs --prefer-dist --no-scripts --no-progress --no-interaction --no-dev --no-autoloader
 
-RUN composer dump-autoload --optimize --apcu --no-dev
-
 FROM php:8.1-fpm-alpine
 
 ENV PHP_EXTENSIONS \
