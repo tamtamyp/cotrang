@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th10 21, 2022 lúc 07:55 AM
--- Phiên bản máy phục vụ: 5.7.33
--- Phiên bản PHP: 8.1.10
+-- Máy chủ: database
+-- Thời gian đã tạo: Th12 26, 2022 lúc 07:46 AM
+-- Phiên bản máy phục vụ: 8.0.31
+-- Phiên bản PHP: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,15 +24,73 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` int NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `menus`
+--
+
+INSERT INTO `menus` (`id`, `title`, `location`, `content`, `created_at`, `updated_at`) VALUES
+(1, 'Menu Footer', '2', NULL, '2022-11-17 09:11:05', '2022-11-17 09:11:05'),
+(2, 'Menu Header', '1', '[[{\"id\":\"18\"},{\"id\":\"19\"},{\"id\":\"20\"},{\"id\":\"21\"},{\"id\":\"22\"},{\"id\":\"23\"},{\"id\":\"24\",\"children\":[[{\"id\":\"25\",\"children\":[[{\"id\":\"26\"}]]}]]}]]', '2022-11-17 09:38:16', '2022-11-17 10:04:15'),
+(3, 'Menu CMS', '0', NULL, '2022-11-17 09:11:05', '2022-11-17 09:11:05');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `menu_item`
+--
+
+CREATE TABLE `menu_item` (
+  `id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `target` varchar(255) DEFAULT NULL,
+  `menu_id` int DEFAULT NULL,
+  `category_id` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Đang đổ dữ liệu cho bảng `menu_item`
+--
+
+INSERT INTO `menu_item` (`id`, `title`, `name`, `slug`, `type`, `target`, `menu_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(18, 'Trang chủ', NULL, 'trang-chu', 'category', NULL, 6, 1, '2022-11-17 09:38:20', '2022-11-17 09:38:20'),
+(19, 'Giới thiệu', NULL, 'gioi-thieu', 'category', NULL, 6, 2, '2022-11-17 09:38:20', '2022-11-17 09:38:20'),
+(20, 'Công bố thông tin', NULL, 'cong-bo-thong-tin', 'category', NULL, 6, 3, '2022-11-17 09:38:20', '2022-11-17 09:38:20'),
+(21, 'Sản phẩm dịch vụ', NULL, 'san-pham', 'category', NULL, 6, 4, '2022-11-17 09:38:20', '2022-11-17 09:38:20'),
+(22, 'Người AVG', NULL, 'nguoi-avg', 'category', NULL, 6, 5, '2022-11-17 09:38:21', '2022-11-17 09:38:21'),
+(23, 'Tin tức', NULL, 'tin-tuc', 'category', NULL, 6, 6, '2022-11-17 09:38:21', '2022-11-17 09:38:21'),
+(24, 'Liên hệ', NULL, 'thong-tin-lien-he', 'category', NULL, 6, 7, '2022-11-17 09:38:21', '2022-11-17 09:38:21'),
+(25, 'Liên hệ nè', NULL, 'thong-tin-lien-he', 'category', NULL, 6, 8, '2022-11-17 09:38:21', '2022-11-17 09:38:21'),
+(26, 'test', NULL, 'https://cms.nethubtv.vn.dev/app/movies', 'custom', NULL, 6, NULL, '2022-11-17 09:38:28', '2022-11-17 09:38:28');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `permissions`
 --
 
 CREATE TABLE `permissions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `module_id` bigint(20) UNSIGNED NOT NULL,
-  `method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `module_id` bigint UNSIGNED NOT NULL,
+  `method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -173,9 +231,9 @@ INSERT INTO `permissions` (`id`, `module_id`, `method`, `name`, `slug`, `created
 --
 
 CREATE TABLE `permission_role` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -573,11 +631,11 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 --
 
 CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deletable` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -598,9 +656,9 @@ INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `type`, `deletable`, `
 --
 
 CREATE TABLE `settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -637,16 +695,16 @@ INSERT INTO `settings` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `change_password` tinyint(1) DEFAULT '0',
   `last_login_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -658,13 +716,25 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `name`, `avatar`, `email`, `email_verified_at`, `password`, `status`, `remember_token`, `change_password`, `last_login_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'tamnt', 'Nguyễn Thị Tâm', NULL, 'thientamyp@gmail.com', NULL, '$2y$10$H2PD0vnE8ZLWIQnE7PPL8uTr4PX5p7X6N8EILScBmGRp.ewJFOdDu', 1, 'Z4ePVkfT62UaodLmYsUpFBse4Y9ftL2bOkQzFdQx8PU6rXIWiTVKWbRLe6fB', 0, NULL, NULL, NULL),
+(1, 1, 'tamnt', 'Nguyễn Thị Tâm', NULL, 'thientamyp@gmail.com', NULL, '$2y$10$H2PD0vnE8ZLWIQnE7PPL8uTr4PX5p7X6N8EILScBmGRp.ewJFOdDu', 1, 'fxoDMTfakv5uppvZKQFL5BlxjHwb1HXuCsUKL0ifV7xXHH8jxPim4YxIEAls', 0, NULL, NULL, NULL),
 (2, NULL, 'admin', NULL, NULL, NULL, NULL, '$2y$10$RybW9KmSgzwohqXILOWh2ujxwum03iZEq2gJ4OPEdcOWz1iKevRoq', 0, 'f9xOjV3HA4hB7m0PBSFmSdxbE4RgAI4muF43mJAIGHV5SsnpDsC6JUb4eT3V', 0, NULL, '2022-06-09 20:08:00', '2022-06-09 20:08:00'),
 (3, NULL, 'admin', NULL, NULL, NULL, NULL, '$2y$10$RybW9KmSgzwohqXILOWh2ujxwum03iZEq2gJ4OPEdcOWz1iKevRoq', 0, NULL, 0, NULL, '2022-06-09 20:20:19', '2022-06-09 20:20:19');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `menu_item`
+--
+ALTER TABLE `menu_item`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `permissions`
@@ -701,34 +771,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `menu_item`
+--
+ALTER TABLE `menu_item`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT cho bảng `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
 
 --
 -- AUTO_INCREMENT cho bảng `permission_role`
 --
 ALTER TABLE `permission_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1781;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1781;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
