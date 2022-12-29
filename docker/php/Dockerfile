@@ -1,5 +1,9 @@
 FROM php:8.1-fpm-alpine
 
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
+
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache \
@@ -27,27 +31,13 @@ RUN deluser www-data &&\
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
-# Set working directory
-WORKDIR /var/www
-
-# USER $user
-
-
 RUN chown -R www-data:www-data /app
-RUN $user -a -G www-data ubuntu
-RUN find /app -type f -exec chmod 644 {} \;
-RUN find /app -type d -exec chmod 755 {} \;
-RUN chgrp -R www-data storage
-RUN chmod -R ug+rwx storage
 
-# USER www-data
+USER www-data
 
 EXPOSE 9000
 CMD ["php-fpm"]
 
-USER $user
+WORKDIR /var/www
+
+USER root
