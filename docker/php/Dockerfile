@@ -31,8 +31,8 @@ COPY . /app
 
 RUN chown -R www-data:www-data /app
 # RUN www-data -a -G www-data ubuntu
-# RUN find /app -type f -exec chmod 644 {} \;
-# RUN find /app -type d -exec chmod 755 {} \;
+RUN find /app -type f -exec chmod 644 {} \;
+RUN find /app -type d -exec chmod 755 {} \;
 RUN chgrp -R www-data app/storage
 RUN chmod -R ug+rwx app/storage
 
