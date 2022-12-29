@@ -67,7 +67,7 @@ services:
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
-    command: sh -c "composer clearcache && composer update && php artisan key:generate && composer dump-autoload"
+    command: sh -c "composer clearcache && composer install && php artisan key:generate && composer dump-autoload"
 
 volumes:
   data:
