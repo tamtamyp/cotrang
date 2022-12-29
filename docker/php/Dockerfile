@@ -28,6 +28,11 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
 RUN chown -R www-data:www-data /app
+RUN usermod -a -G www-data ubuntu
+RUN find /app -type f -exec chmod 644 {} \;
+RUN find /app -type d -exec chmod 755 {} \;
+RUN chgrp -R www-data storage bootstrap/cache
+RUN chmod -R ug+rwx storage bootstrap/cache
 
 USER www-data
 
