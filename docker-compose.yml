@@ -18,7 +18,7 @@ services:
   app:
     container_name: cotrang_app 
     build:
-      context: .
+      context: ./.
       dockerfile: ./docker/php/Dockerfile
     working_dir: /app
     volumes:
@@ -59,17 +59,15 @@ services:
     networks:
       - network
 
-  # composer_installation:
-  #   container_name: composer_installation
-  #   image: composer/composer
-  #   networks:
-  #     - network
-  #   ports:
-  #     - "9001:9000"
-  #   volumes:
-  #     - ./:/app
-  #   # working_dir: /composer
-  #   command: update
+  composer:
+    container_name: composer
+    image: composer:latest
+    networks:
+      - network
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: sh -c "composer clearcache && composer update && php artisan key:generate && composer dump-autoload"
 
 volumes:
   data:
