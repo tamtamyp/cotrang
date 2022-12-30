@@ -19,8 +19,8 @@ services:
     container_name: cotrang_app 
     build:
       args:
-        user: root
-        uid: 4096
+        user: tam
+        uid: 1000
       context: ./.
       dockerfile: ./docker/php/Dockerfile
     working_dir: /app

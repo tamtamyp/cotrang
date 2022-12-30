@@ -1,6 +1,8 @@
 FROM php:8.1-fpm-alpine
 
 # Arguments defined in docker-compose.yml
+ARG user
+ARG uid
 
 RUN apk update \
     && apk upgrade \
@@ -30,7 +32,8 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
 RUN chown -R www-data:www-data /app
-
+RUN chown -R $USER:www-data /app/storage
+RUN chmod -R 777 /app/storage
 USER www-data
 
 EXPOSE 9000
