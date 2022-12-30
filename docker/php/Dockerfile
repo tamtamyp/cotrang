@@ -30,7 +30,7 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
 RUN chown -R www-data:www-data /app
-RUN chmod 777 -R /var/www/html/storage/
+RUN chmod 777 -R /var/www/cotrang/storage/
 # RUN chmod -R 777 storage
 # RUN www-data -a -G www-data ubuntu
 # RUN find /app -type f -exec chmod 644 {} \;
