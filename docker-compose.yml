@@ -18,15 +18,14 @@ services:
   app:
     container_name: cotrang_app 
     build:
-      args:
-        user: tam
-        uid: 1000
       context: ./.
       dockerfile: ./docker/php/Dockerfile
     working_dir: /app
     volumes:
       - .:/app
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - type: bind
+        source: ./storage
     networks:
       - network
 
