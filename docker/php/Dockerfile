@@ -30,8 +30,6 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
 RUN chown -R www-data:www-data /app
-RUN chown -R www-data:www-data /app/storage
-RUN chmod -R ug+w /app/storage
 
 USER www-data
 

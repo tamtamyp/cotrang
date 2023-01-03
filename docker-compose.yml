@@ -21,7 +21,6 @@ services:
       context: ./.
       dockerfile: ./docker/php/Dockerfile
     working_dir: /app
-    user: "6:4096"
     volumes:
       - .:/app
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
