@@ -28,7 +28,7 @@ RUN deluser www-data &&\
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
-COPY .env.example .env
+COPY .env.example /app/.env
 RUN chown -R www-data:www-data /app
 RUN chown -R www-data:www-data /app/storage
 # RUN chmod 777 -R /var/www/cotrang/storage/
