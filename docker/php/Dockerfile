@@ -32,7 +32,6 @@ COPY . /app
 RUN chown -R www-data:www-data /app
 RUN chown -R www-data:www-data /app/storage
 RUN chmod -R ug+w /app/storage
-RUN php artisan optimize
 
 USER www-data
 
