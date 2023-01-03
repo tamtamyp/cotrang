@@ -29,18 +29,9 @@ RUN deluser www-data &&\
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
-RUN chown -R www-data:www-data /app
-
-USER www-data
-
-ARG UID=1000
-ARG GID=1000
-
-RUN groupadd -g "${GID}" python \
-  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" tamnt
 RUN chown -R www-data:www-data /app/storage
 
-USER tamnt
+USER www-data
 
 EXPOSE 9000
 CMD ["php-fpm"]
