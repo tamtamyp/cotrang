@@ -30,7 +30,7 @@ COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
 RUN chown -R www-data:www-data /app
-RUN chown -R root:82 /app/storage
+RUN chown -R root:root /app/storage
 RUN chmod -R ug+w /app/storage
 # RUN chown -R root:www-data /app
 # RUN chmod 777 -R /var/www/cotrang/storage/
@@ -42,7 +42,7 @@ RUN chmod -R ug+w /app/storage
 # RUN chmod -R ug+rwx app/storage
 
 USER www-data
-USER root
+USER $USER
 
 EXPOSE 9000
 CMD ["php-fpm"]
