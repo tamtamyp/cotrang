@@ -38,4 +38,4 @@ CMD ["php-fpm"]
 
 USER root
 
-RUN chown -R root:root /app/storage
+RUN chown -R root:82 /app/storage
