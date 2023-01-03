@@ -37,3 +37,5 @@ EXPOSE 9000
 CMD ["php-fpm"]
 
 USER root
+
+RUN chown -R root:root /app/storage
