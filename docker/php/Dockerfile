@@ -33,9 +33,16 @@ RUN chown -R www-data:www-data /app
 
 USER www-data
 
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g "${GID}" python \
+  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" tamnt
+RUN chown -R www-data:www-data /app/storage
+
+USER tamnt
+
 EXPOSE 9000
 CMD ["php-fpm"]
 
 USER root
-
-RUN chown -R root:82 /app/storage
