@@ -26,16 +26,20 @@ RUN deluser www-data &&\
     adduser -u 1000 -G www-data www-data --disabled-password &&\
     install -d -m 0755 -o www-data -g www-data /home/www-data
 
-# COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-# COPY . /app
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
 
-# RUN chown -R www-data:www-data /app
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+COPY . /app
+
+RUN chown -R www-data:www-data /app
 
 USER www-data
 
 EXPOSE 9000
 CMD ["php-fpm"]
 
-# COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-# COPY . /app
-COPY --chown=www-data:www-data . /app
+USER root
