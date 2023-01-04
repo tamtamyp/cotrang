@@ -31,8 +31,7 @@ USER www-data
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
 
-RUN chown -R www-data:www-data /app
-RUN chown -R www-data:www-data /app/storage
+RUN chown -R www-data:www-data /storage
 
 EXPOSE 9000
 CMD ["php-fpm"]
