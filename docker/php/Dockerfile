@@ -36,7 +36,5 @@ USER www-data
 EXPOSE 9000
 CMD ["php-fpm"]
 
-COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+# COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY . /app
-
-USER root
