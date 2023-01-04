@@ -31,7 +31,7 @@ COPY . /app
 
 USER www-data
 
-RUN chown -R www-data:www-data /app/storage
+RUN chown -R www-data:www-data storage
 
 EXPOSE 9000
 CMD ["php-fpm"]
