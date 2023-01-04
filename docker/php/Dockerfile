@@ -26,16 +26,17 @@ RUN deluser www-data &&\
     adduser -u 1000 -G www-data www-data --disabled-password &&\
     install -d -m 0755 -o www-data -g www-data /home/www-data
 
-COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-COPY . /app
+# COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+# COPY . /app
 
-RUN chown -R www-data:www-data /app
+# RUN chown -R www-data:www-data /app
 
 USER www-data
 
-RUN chown -R www-data:www-data ./storage
-
 EXPOSE 9000
 CMD ["php-fpm"]
+
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+COPY . /app
 
 USER root
