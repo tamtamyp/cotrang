@@ -37,4 +37,5 @@ EXPOSE 9000
 CMD ["php-fpm"]
 
 # COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-COPY . /app
+# COPY . /app
+COPY --chown=www-data:www-data . /app
