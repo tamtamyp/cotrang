@@ -42,7 +42,7 @@ services:
       MYSQL_PASSWORD: 123456
       MYSQL_DATABASE: cotrang
     volumes:
-      - data:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql:z
       - ./docker/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
     networks:
       - network
