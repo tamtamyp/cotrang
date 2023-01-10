@@ -32,8 +32,7 @@ COPY . /app
 RUN chown -R www-data:www-data /app
 
 USER www-data
-
-EXPOSE 9000
-CMD ["php-fpm"]
-
+#expose bắt buộc phải là user www-data (nếu k sẽ chết quyền của fpm)
+EXPOSE 9000 
+# set lại user để khi exec bằng docker-compose sẽ default = root
 USER root

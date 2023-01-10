@@ -26,6 +26,7 @@ services:
     volumes:
       - .:/app
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    command: sh -c "chown -R $USER:www-data storage/logs && chmod -R 775 storage/logs && php-fpm"
     networks:
       - network
 
@@ -63,7 +64,8 @@ services:
 
   composer:
     container_name: composer
-    image: composer:latest
+    image: composer:latest 
+    #thằng này chưa support php8 đâu
     networks:
       - network
     volumes:
