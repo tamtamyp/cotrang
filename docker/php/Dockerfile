@@ -22,8 +22,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath zip
 
 RUN deluser www-data &&\
     if getent group www-data ; then delgroup www-data; fi &&\
-    addgroup -g 1000 www-data &&\
-    adduser -u 1000 -G www-data www-data --disabled-password &&\
+    addgroup -g 82 www-data &&\
+    adduser -u 82 -G www-data www-data --disabled-password &&\
     install -d -m 0755 -o www-data -g www-data /home/www-data
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini

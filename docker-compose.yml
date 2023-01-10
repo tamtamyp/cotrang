@@ -17,10 +17,7 @@ services:
   app:
     container_name: cotrang_app 
     build:
-      args:
-        user: www-data
-        uid: 1000
-      context: ./.
+      context: ./
       dockerfile: ./docker/php/Dockerfile
     working_dir: /app
     volumes:
@@ -65,7 +62,6 @@ services:
   composer:
     container_name: composer
     image: composer:latest 
-    #thằng này chưa support php8 đâu
     networks:
       - network
     volumes:
